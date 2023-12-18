@@ -1196,6 +1196,7 @@ GameObject:
   - component: {fileID: 2133605395}
   - component: {fileID: 2133605396}
   - component: {fileID: 2133605397}
+  - component: {fileID: 2133605398}
   m_Layer: 0
   m_Name: Archer
   m_TagString: Untagged
@@ -1255,6 +1256,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _waypointManager: {fileID: 547023115}
   _agent: {fileID: 2133605396}
+--- !u!114 &2133605398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2133605394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f778265fef93c543b705cca73c195bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _archer: {fileID: 2133605397}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

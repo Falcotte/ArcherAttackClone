@@ -11,22 +11,15 @@ namespace ArcherAttack.Archer
         [SerializeField] private NavMeshAgent _agent;
 
         private int _currentWaypointIndex;
+        public Vector3 CurrentDestination => _waypointManager.GetWaypoint(_currentWaypointIndex).transform.position;
 
-        public void Update()
+        public void MoveToNextWaypoint()
         {
-            if(Input.GetKeyDown(KeyCode.Space))
+            if(_currentWaypointIndex != _waypointManager.WaypointCount - 1)
             {
-                if(_currentWaypointIndex != _waypointManager.WaypointCount - 1)
-                {
-                    MoveToNextWaypoint();
-                }
+                _currentWaypointIndex++;
+                _agent.SetDestination(CurrentDestination);
             }
-        }
-
-        private void MoveToNextWaypoint()
-        {
-            _currentWaypointIndex++;
-            _agent.SetDestination(_waypointManager.GetWaypoint(_currentWaypointIndex).transform.position);
         }
     }
 }
