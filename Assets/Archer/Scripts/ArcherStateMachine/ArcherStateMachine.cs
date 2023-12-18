@@ -30,7 +30,7 @@ namespace ArcherAttack.Archer
         {
             _currentState.ExitState(this);
 
-            //Debug.Log($"Changing state to {nextState.ToString()}");
+            Debug.Log($"Changing state to {nextState.ToString()}");
 
             _currentState = nextState;
             nextState.EnterState(this);

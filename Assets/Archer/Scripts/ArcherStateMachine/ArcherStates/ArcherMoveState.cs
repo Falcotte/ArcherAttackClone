@@ -18,8 +18,11 @@ namespace ArcherAttack.Archer
 
         public override void UpdateState(ArcherStateMachine stateMachine)
         {
+            stateMachine.Archer.UpdateWaypointProgression();
+
             if(Vector3.SqrMagnitude(stateMachine.Archer.transform.position - stateMachine.Archer.CurrentDestination) <= ReachTargetThreshold)
             {
+                stateMachine.Archer.ReachWaypoint();
                 stateMachine.ChangeState(stateMachine.IdleState);
             }
         }
