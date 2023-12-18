@@ -6,7 +6,7 @@ namespace ArcherAttack.Archer
     {
         public override void EnterState(ArcherStateMachine stateMachine)
         {
-
+            stateMachine.Archer.AnimationController.SetMovement(false);
         }
 
         public override void ExitState(ArcherStateMachine stateMachine)
@@ -18,7 +18,7 @@ namespace ArcherAttack.Archer
         {
             if(Input.GetKeyDown(KeyCode.Space))
             {
-                stateMachine.Archer.MoveToNextWaypoint();
+                stateMachine.Archer.MovementController.MoveToNextWaypoint();
                 stateMachine.ChangeState(stateMachine.MoveState);
             }
         }

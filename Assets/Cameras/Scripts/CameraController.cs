@@ -16,7 +16,7 @@ namespace ArcherAttack.Cameras
 
         private void OnEnable()
         {
-            ArcherController.OnWaypointProgression += AdjustCameraPosition;
+            ArcherMovementController.OnWaypointProgression += AdjustCameraPosition;
         }
 
         private void OnDisable()

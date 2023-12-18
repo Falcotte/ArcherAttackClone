@@ -8,7 +8,7 @@ namespace ArcherAttack.Archer
 
         public override void EnterState(ArcherStateMachine stateMachine)
         {
-
+            stateMachine.Archer.AnimationController.SetMovement(true);
         }
 
         public override void ExitState(ArcherStateMachine stateMachine)
@@ -18,11 +18,11 @@ namespace ArcherAttack.Archer
 
         public override void UpdateState(ArcherStateMachine stateMachine)
         {
-            stateMachine.Archer.UpdateWaypointProgression();
+            stateMachine.Archer.MovementController.UpdateWaypointProgression();
 
-            if(Vector3.SqrMagnitude(stateMachine.Archer.transform.position - stateMachine.Archer.CurrentDestination) <= ReachTargetThreshold)
+            if(Vector3.SqrMagnitude(stateMachine.Archer.transform.position - stateMachine.Archer.MovementController.CurrentDestination) <= ReachTargetThreshold)
             {
-                stateMachine.Archer.ReachWaypoint();
+                stateMachine.Archer.MovementController.ReachWaypoint();
                 stateMachine.ChangeState(stateMachine.IdleState);
             }
         }
