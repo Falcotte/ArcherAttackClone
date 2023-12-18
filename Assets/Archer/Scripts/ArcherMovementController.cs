@@ -14,8 +14,10 @@ namespace ArcherAttack.Archer
 
         private int _previousWaypointIndex;
         private int _currentWaypointIndex;
+        public int CurrentWaypointIndex => _currentWaypointIndex;
         private float _waypointProgression;
 
+        public static UnityAction OnMovementStarted;
         public static UnityAction<float> OnWaypointProgression;
 
         private void Start()
@@ -27,6 +29,8 @@ namespace ArcherAttack.Archer
         {
             if(_currentWaypointIndex != _waypointManager.WaypointCount - 1)
             {
+                OnMovementStarted?.Invoke();
+
                 _currentWaypointIndex++;
                 _agent.SetDestination(CurrentDestination);
             }

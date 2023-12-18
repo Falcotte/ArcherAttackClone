@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace ArcherAttack.Archer
 {
@@ -9,5 +10,7 @@ namespace ArcherAttack.Archer
 
         [SerializeField] private ArcherAnimationController _animationController;
         public ArcherAnimationController AnimationController => _animationController;
+
+        public static UnityAction OnAimed;
     }
 }

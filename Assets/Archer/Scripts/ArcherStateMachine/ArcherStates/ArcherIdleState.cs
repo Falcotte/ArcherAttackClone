@@ -4,34 +4,40 @@ namespace ArcherAttack.Archer
 {
     public class ArcherIdleState : ArcherBaseState
     {
-        private bool _isMovementTriggered;
+        private bool _isActionTriggered;
 
         public override void EnterState(ArcherStateMachine stateMachine)
         {
-            InputController.OnTouchDown += TriggerMovement;
+            InputController.OnTouchDown += TriggerAction;
 
             stateMachine.Archer.AnimationController.SetMovement(false);
         }
 
         public override void ExitState(ArcherStateMachine stateMachine)
         {
-            InputController.OnTouchDown -= TriggerMovement;
+            InputController.OnTouchDown -= TriggerAction;
         }
 
         public override void UpdateState(ArcherStateMachine stateMachine)
         {
-            if(_isMovementTriggered)
+            if(_isActionTriggered)
             {
-                stateMachine.Archer.MovementController.MoveToNextWaypoint();
-                stateMachine.ChangeState(stateMachine.MoveState);
+                if(stateMachine.Archer.MovementController.CurrentWaypointIndex == 0)
+                {
+                    stateMachine.ChangeState(stateMachine.MoveState);
+                }
+                else
+                {
+                    stateMachine.ChangeState(stateMachine.AimState);
+                }
 
-                _isMovementTriggered = false;
+                _isActionTriggered = false;
             }
         }
 
-        private void TriggerMovement()
+        private void TriggerAction()
         {
-            _isMovementTriggered = true;
+            _isActionTriggered = true;
         }
     }
 }

@@ -8,6 +8,7 @@ namespace ArcherAttack.Archer
 
         public override void EnterState(ArcherStateMachine stateMachine)
         {
+            stateMachine.Archer.MovementController.MoveToNextWaypoint();
             stateMachine.Archer.AnimationController.SetMovement(true);
         }
 

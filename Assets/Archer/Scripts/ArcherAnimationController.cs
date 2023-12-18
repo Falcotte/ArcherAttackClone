@@ -10,5 +10,15 @@ namespace ArcherAttack.Archer
         {
             _animator.SetBool("IsMoving", isMoving);
         }
+
+        public void Aim()
+        {
+            _animator.SetTrigger("Aim");
+        }
+
+        public void Shoot()
+        {
+            _animator.SetTrigger("Shoot");
+        }
     }
 }
