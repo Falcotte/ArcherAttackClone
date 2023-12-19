@@ -8,19 +8,19 @@ namespace ArcherAttack.Archer
         [SerializeField] private Transform _shootPoint;
         [SerializeField] private Transform _spineBone;
 
-        [SerializeField] private Transform _arrow;
+        [SerializeField] private ArrowController _arrowPrefab;
         [SerializeField] private Transform _arrowBone;
 
         [SerializeField] private Transform _bowStringBone;
 
-        [SerializeField] private Pose _arrowBoneFinalPose;
+        [SerializeField] private Pose _arrowFinalPose;
         [SerializeField] private Pose _bowStringBoneFinalPose;
 
         [SerializeField] private float _inputSensitivity;
         [SerializeField] private float _inputHorizontalBound;
         [SerializeField] private float _inputVerticalBound;
 
-        private Pose _arrowBoneInitialPose;
+        private ArrowController _arrow;
         private Pose _bowStringBoneInitialPose;
 
         private Vector2 _currentInputVector;
@@ -49,12 +49,17 @@ namespace ArcherAttack.Archer
             _spineBone.Rotate(new Vector3(0f, _currentInputVector.x, -_currentInputVector.y), Space.Self);
         }
 
+        public void SpawnArrow()
+        {
+            _arrow = Instantiate(_arrowPrefab);
+        }
+
         public void AnimateBowAndArrow()
         {
-            _arrow.gameObject.SetActive(true);
+            _arrow.transform.SetParent(_shootPoint);
 
-            _arrowBone.localPosition = _arrowBoneFinalPose.position;
-            _arrowBone.localRotation = _arrowBoneFinalPose.rotation;
+            _arrow.transform.localPosition = _arrowFinalPose.position;
+            _arrow.transform.localRotation = _arrowFinalPose.rotation;
 
             _bowStringBone.localPosition = _bowStringBoneFinalPose.position;
             _bowStringBone.localRotation = _bowStringBoneFinalPose.rotation;
@@ -62,11 +67,6 @@ namespace ArcherAttack.Archer
 
         public void ResetBowAndArrow()
         {
-            _arrow.gameObject.SetActive(false);
-
-            _arrowBone.localPosition = _arrowBoneInitialPose.position;
-            _arrowBone.localRotation = _arrowBoneInitialPose.rotation;
-
             _bowStringBone.localPosition = _bowStringBoneInitialPose.position;
             _bowStringBone.localRotation = _bowStringBoneInitialPose.rotation;
 
@@ -84,6 +84,12 @@ namespace ArcherAttack.Archer
         public void CalculateArrowPath()
         {
             Debug.DrawLine(_shootPoint.position, _shootPoint.position + _shootPoint.forward * 50f);
+        }
+
+        public void ShootArrow()
+        {
+            _arrow.transform.SetParent(null);
+            _arrow.StartMovement();
         }
     }
 }

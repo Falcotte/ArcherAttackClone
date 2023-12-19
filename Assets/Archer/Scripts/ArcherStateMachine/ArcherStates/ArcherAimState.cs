@@ -13,6 +13,7 @@ namespace ArcherAttack.Archer
             stateMachine.Archer.AnimationController.Aim();
             ArcherController.OnAimed?.Invoke();
 
+            stateMachine.Archer.ShooterController.SpawnArrow();
             stateMachine.Archer.ShooterController.AnimateBowAndArrow();
         }
 
@@ -21,16 +22,14 @@ namespace ArcherAttack.Archer
             InputController.OnTouchUp -= TriggerShooting;
 
             stateMachine.Archer.AnimationController.ResetAim();
-            stateMachine.Archer.ShooterController.ResetBowAndArrow();
+            //stateMachine.Archer.ShooterController.ResetBowAndArrow();
         }
 
         public override void UpdateState(ArcherStateMachine stateMachine)
         {
             if(_isShootingTriggered)
             {
-                stateMachine.Archer.AnimationController.Shoot();
-                stateMachine.ChangeState(stateMachine.MoveState);
-
+                stateMachine.ChangeState(stateMachine.ShootState);
                 _isShootingTriggered = false;
             }
 
