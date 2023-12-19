@@ -4,6 +4,9 @@ namespace AngryKoala.Ragdoll
 {
     public class RagdollComponent : MonoBehaviour
     {
+        [SerializeField] private Ragdoll _ragdoll;
+        public Ragdoll Ragdoll => _ragdoll;
+
         [SerializeField] private Rigidbody componentRigidbody;
         public Rigidbody ComponentRigidbody => componentRigidbody;
         [SerializeField] private Collider componentCollider;

@@ -275,6 +275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea6ea0a040c56ef4c81442559b019e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _ragdoll: {fileID: 1666506784}
   componentRigidbody: {fileID: 99132722}
   componentCollider: {fileID: 99132723}
   bodyPart: 2
@@ -389,6 +390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea6ea0a040c56ef4c81442559b019e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _ragdoll: {fileID: 1666506784}
   componentRigidbody: {fileID: 102623651}
   componentCollider: {fileID: 102623653}
   bodyPart: 3
@@ -503,6 +505,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea6ea0a040c56ef4c81442559b019e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _ragdoll: {fileID: 1666506784}
   componentRigidbody: {fileID: 182772194}
   componentCollider: {fileID: 182772196}
   bodyPart: 2
@@ -844,6 +847,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea6ea0a040c56ef4c81442559b019e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _ragdoll: {fileID: 1666506784}
   componentRigidbody: {fileID: 380889431}
   componentCollider: {fileID: 380889430}
   bodyPart: 0
@@ -1168,6 +1172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea6ea0a040c56ef4c81442559b019e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _ragdoll: {fileID: 1666506784}
   componentRigidbody: {fileID: 535480522}
   componentCollider: {fileID: 535480524}
   bodyPart: 1
@@ -1387,6 +1392,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea6ea0a040c56ef4c81442559b019e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _ragdoll: {fileID: 1666506784}
   componentRigidbody: {fileID: 645377944}
   componentCollider: {fileID: 645377945}
   bodyPart: 3
@@ -2378,6 +2384,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea6ea0a040c56ef4c81442559b019e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _ragdoll: {fileID: 1666506784}
   componentRigidbody: {fileID: 1086927676}
   componentCollider: {fileID: 1086927677}
   bodyPart: 3
@@ -2396,6 +2403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea6ea0a040c56ef4c81442559b019e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _ragdoll: {fileID: 1666506784}
   componentRigidbody: {fileID: 1086927673}
   componentCollider: {fileID: 1086927675}
   bodyPart: 3
@@ -2585,6 +2593,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea6ea0a040c56ef4c81442559b019e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _ragdoll: {fileID: 1666506784}
   componentRigidbody: {fileID: 1165830218}
   componentCollider: {fileID: 1165830219}
   bodyPart: 2
@@ -2720,6 +2729,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea6ea0a040c56ef4c81442559b019e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _ragdoll: {fileID: 1666506784}
   componentRigidbody: {fileID: 1284348146}
   componentCollider: {fileID: 1284348148}
   bodyPart: 2
@@ -3001,6 +3011,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea6ea0a040c56ef4c81442559b019e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _ragdoll: {fileID: 1666506784}
   componentRigidbody: {fileID: 1543151417}
   componentCollider: {fileID: 1543151418}
   bodyPart: 1
