@@ -1,5 +1,6 @@
 using ArcherAttack.Inputs;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace ArcherAttack.Archer
 {
@@ -9,7 +10,6 @@ namespace ArcherAttack.Archer
         [SerializeField] private Transform _spineBone;
 
         [SerializeField] private ArrowController _arrowPrefab;
-        [SerializeField] private Transform _arrowBone;
 
         [SerializeField] private Transform _bowStringBone;
 
@@ -25,11 +25,10 @@ namespace ArcherAttack.Archer
 
         private Vector2 _currentInputVector;
 
+        public static UnityAction<Transform> OnShoot;
+
         private void Awake()
         {
-            _arrowBone.GetLocalPositionAndRotation(out Vector3 arrowBonePosition, out Quaternion arrowBoneRotation);
-            _bowStringBoneInitialPose = new Pose(arrowBonePosition, arrowBoneRotation);
-
             _bowStringBone.GetLocalPositionAndRotation(out Vector3 bowStringBonePosition, out Quaternion bowStringBoneRotation);
             _bowStringBoneInitialPose = new Pose(bowStringBonePosition, bowStringBoneRotation);
         }
@@ -90,6 +89,8 @@ namespace ArcherAttack.Archer
         {
             _arrow.transform.SetParent(null);
             _arrow.StartMovement();
+
+            OnShoot?.Invoke(_arrow.transform);
         }
     }
 }

@@ -178,5 +178,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f708ebb768ddc544d83329a0eaf4ee9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 10
   _rigidbody: {fileID: 7970516896675158297}
+  _moveSpeed: 15
+  _maxAllowedFlightTimeWithoutCollision: 1.5

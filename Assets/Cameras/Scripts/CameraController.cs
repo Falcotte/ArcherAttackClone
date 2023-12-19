@@ -8,6 +8,7 @@ namespace ArcherAttack.Cameras
     {
         [SerializeField] private CinemachineVirtualCamera _followCamera;
         [SerializeField] private CinemachineVirtualCamera _aimCamera;
+        [SerializeField] private CinemachineVirtualCamera _shootCamera;
 
         private CinemachineTrackedDolly _dolly;
 
@@ -41,11 +42,20 @@ namespace ArcherAttack.Cameras
         {
             _aimCamera.Priority = 10;
             _followCamera.Priority = 0;
+            _shootCamera.Priority = 0;
         }
 
         private void SwitchToFollowCamera()
         {
             _followCamera.Priority = 10;
+            _aimCamera.Priority = 0;
+            _shootCamera.Priority = 0;
+        }
+
+        private void SwitchToShootCamera(Transform arrow)
+        {
+            _shootCamera.Priority = 10;
+            _followCamera.Priority = 0;
             _aimCamera.Priority = 0;
         }
     }
