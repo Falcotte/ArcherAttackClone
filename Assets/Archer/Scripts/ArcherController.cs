@@ -11,6 +11,9 @@ namespace ArcherAttack.Archer
         [SerializeField] private ArcherAnimationController _animationController;
         public ArcherAnimationController AnimationController => _animationController;
 
+        [SerializeField] private ArcherShooterController _shooterController;
+        public ArcherShooterController ShooterController => _shooterController;
+
         public static UnityAction OnAimed;
     }
 }
