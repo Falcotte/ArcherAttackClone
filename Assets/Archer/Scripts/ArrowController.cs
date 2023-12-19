@@ -47,6 +47,7 @@ namespace ArcherAttack.Archer
 
         private void OnTriggerEnter(Collider other)
         {
+            Debug.Log("Hit Environment");
             OnArrowMissed?.Invoke();
 
             _isMoving = false;

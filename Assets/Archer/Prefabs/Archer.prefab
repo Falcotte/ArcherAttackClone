@@ -3403,7 +3403,6 @@ MonoBehaviour:
   _spineBone: {fileID: 8799707363748344208}
   _arrowPrefab: {fileID: 8596579740365355739, guid: 5cbc01d6e25a7f04aac36a1ac3d4386f,
     type: 3}
-  _arrowBone: {fileID: 2653202607629717479}
   _bowStringBone: {fileID: 4640686169131744949}
   _arrowFinalPose:
     position: {x: 0.047, y: -0.051, z: 0.292}
@@ -3411,9 +3410,9 @@ MonoBehaviour:
   _bowStringBoneFinalPose:
     position: {x: -0.623, y: -0.023, z: -0.237}
     rotation: {x: 0, y: 0, z: 0, w: 1}
-  _inputSensitivity: 2
-  _inputHorizontalBound: 5
-  _inputVerticalBound: 5
+  _inputSensitivity: 3
+  _inputHorizontalBound: 10
+  _inputVerticalBound: 10
 --- !u!1 &8718114668488397808
 GameObject:
   m_ObjectHideFlags: 0
