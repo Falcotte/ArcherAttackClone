@@ -1,3 +1,4 @@
+using AngryKoala.Ragdoll;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -6,7 +7,7 @@ namespace ArcherAttack.Archer
     public class ArrowController : MonoBehaviour
     {
         [SerializeField] private Rigidbody _rigidbody;
-        
+
         [SerializeField] private float _moveSpeed;
         [SerializeField] private float _maxAllowedFlightTimeWithoutCollision;
 
@@ -23,6 +24,7 @@ namespace ArcherAttack.Archer
                 if(_flightTime >= _maxAllowedFlightTimeWithoutCollision)
                 {
                     OnArrowMissed?.Invoke();
+                    Destroy(gameObject);
                 }
             }
         }
@@ -47,9 +49,21 @@ namespace ArcherAttack.Archer
 
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log("Hit Environment");
-            OnArrowMissed?.Invoke();
+            if(!_isMoving)
+                return;
 
+            if(other.TryGetComponent(out RagdollComponent ragdollComponent))
+            {
+                ragdollComponent.Ragdoll.EnableRagdoll();
+                ragdollComponent.Ragdoll.Enemy.AnimationController.DisableAnimator();
+
+                transform.SetParent(ragdollComponent.transform);
+            }
+            else
+            {
+                Debug.Log("Hit Environment");
+                OnArrowMissed?.Invoke();
+            }
             _isMoving = false;
         }
     }

@@ -1,10 +1,14 @@
 using System.Collections.Generic;
+using ArcherAttack.Enemy;
 using UnityEngine;
 
 namespace AngryKoala.Ragdoll
 {
     public class Ragdoll : MonoBehaviour
     {
+        [SerializeField] private EnemyController _enemy;
+        public EnemyController Enemy => _enemy;
+
         [SerializeField] private List<RagdollComponent> ragdollComponents = new List<RagdollComponent>();
         public List<RagdollComponent> RagdollComponents => ragdollComponents;
 
@@ -30,7 +34,7 @@ namespace AngryKoala.Ragdoll
             for(int i = 0; i < ragdollComponents.Count; i++)
             {
                 ragdollComponents[i].ComponentRigidbody.isKinematic = true;
-                ragdollComponents[i].ComponentCollider.enabled = false;
+                //ragdollComponents[i].ComponentCollider.enabled = false;
             }
         }
 
