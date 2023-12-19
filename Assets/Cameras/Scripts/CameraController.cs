@@ -1,6 +1,7 @@
 using ArcherAttack.Archer;
 using Cinemachine;
 using UnityEngine;
+using DG.Tweening;
 
 namespace ArcherAttack.Cameras
 {
@@ -9,6 +10,9 @@ namespace ArcherAttack.Cameras
         [SerializeField] private CinemachineVirtualCamera _followCamera;
         [SerializeField] private CinemachineVirtualCamera _aimCamera;
         [SerializeField] private CinemachineVirtualCamera _shootCamera;
+
+        [SerializeField] private float _shootCameraFollowDistance;
+        [SerializeField] private float _shootCameraFollowDuration;
 
         private CinemachineTrackedDolly _dolly;
 
@@ -23,6 +27,8 @@ namespace ArcherAttack.Cameras
             ArcherMovementController.OnWaypointProgression += AdjustCameraPosition;
 
             ArcherController.OnAimed += SwitchToAimCamera;
+
+            ArcherShooterController.OnShoot += SwitchToShootCamera;
         }
 
         private void OnDisable()
@@ -31,6 +37,8 @@ namespace ArcherAttack.Cameras
             ArcherMovementController.OnWaypointProgression -= AdjustCameraPosition;
 
             ArcherController.OnAimed -= SwitchToAimCamera;
+
+            ArcherShooterController.OnShoot -= SwitchToShootCamera;
         }
 
         private void AdjustCameraPosition(float pathPosition)
@@ -52,11 +60,24 @@ namespace ArcherAttack.Cameras
             _shootCamera.Priority = 0;
         }
 
-        private void SwitchToShootCamera(Transform arrow)
+        private void SwitchToShootCamera()
         {
             _shootCamera.Priority = 10;
             _followCamera.Priority = 0;
             _aimCamera.Priority = 0;
+
+            AnimateShootCamera();
+        }
+
+        private void AnimateShootCamera()
+        {
+            _shootCamera.transform.position = _aimCamera.transform.position;
+            _shootCamera.transform.rotation = _aimCamera.transform.rotation;
+
+            Sequence shootCameraSequence = DOTween.Sequence();
+            shootCameraSequence.Append(_shootCamera.transform.DOLocalMove(_shootCamera.transform.localPosition + Vector3.forward * _shootCameraFollowDistance, _shootCameraFollowDuration)
+                .SetEase(Ease.InSine));
+            shootCameraSequence.AppendCallback(() => SwitchToFollowCamera());
         }
     }
 }

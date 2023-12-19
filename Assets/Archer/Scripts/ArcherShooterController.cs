@@ -25,7 +25,7 @@ namespace ArcherAttack.Archer
 
         private Vector2 _currentInputVector;
 
-        public static UnityAction<Transform> OnShoot;
+        public static UnityAction OnShoot;
 
         private void Awake()
         {
@@ -90,7 +90,7 @@ namespace ArcherAttack.Archer
             _arrow.transform.SetParent(null);
             _arrow.StartMovement();
 
-            OnShoot?.Invoke(_arrow.transform);
+            OnShoot?.Invoke();
         }
     }
 }
