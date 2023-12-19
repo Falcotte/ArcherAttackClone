@@ -28,7 +28,7 @@ namespace ArcherAttack.Archer
                 }
                 else
                 {
-                    stateMachine.ChangeState(stateMachine.AimState);
+                    stateMachine.ChangeState(stateMachine.DrawState);
                 }
 
                 _isActionTriggered = false;
@@ -38,6 +38,11 @@ namespace ArcherAttack.Archer
         private void TriggerAction()
         {
             _isActionTriggered = true;
+        }
+
+        public override string ToString()
+        {
+            return "Idle";
         }
     }
 }

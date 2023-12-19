@@ -13,6 +13,9 @@ namespace ArcherAttack.Archer
         public ArcherIdleState IdleState => _idleState;
         private ArcherMoveState _moveState = new();
         public ArcherMoveState MoveState => _moveState;
+        private ArcherDrawState _drawState = new();
+        public ArcherDrawState DrawState => _drawState;
+
         private ArcherAimState _aimState = new();
         public ArcherAimState AimState => _aimState;
 
@@ -31,7 +34,7 @@ namespace ArcherAttack.Archer
         {
             _currentState.ExitState(this);
 
-            Debug.Log($"Changing state to {nextState}");
+            Debug.Log($"Archer changing state to {nextState}");
 
             _currentState = nextState;
             nextState.EnterState(this);

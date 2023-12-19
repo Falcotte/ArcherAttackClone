@@ -27,5 +27,10 @@ namespace ArcherAttack.Archer
                 stateMachine.ChangeState(stateMachine.IdleState);
             }
         }
+
+        public override string ToString()
+        {
+            return "Moving";
+        }
     }
 }

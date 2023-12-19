@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace ArcherAttack.Archer
 {
@@ -6,19 +7,18 @@ namespace ArcherAttack.Archer
     {
         [SerializeField] private Animator _animator;
 
-        public void SetMovement(bool isMoving)
-        {
-            _animator.SetBool("IsMoving", isMoving);
-        }
+        public static UnityAction OnDrawCompleted;
 
-        public void Aim()
-        {
-            _animator.SetTrigger("Aim");
-        }
+        public void SetMovement(bool isMoving) => _animator.SetBool("IsMoving", isMoving);
 
-        public void Shoot()
-        {
-            _animator.SetTrigger("Shoot");
-        }
+        public void CompleteDraw() => OnDrawCompleted?.Invoke();
+
+        public void Aim() => _animator.SetTrigger("Aim");
+
+        public void ResetAim() => _animator.ResetTrigger("Aim");
+
+        public void Shoot() => _animator.SetTrigger("Shoot");
+
+        public void ResetShoot() => _animator.ResetTrigger("Shoot");
     }
 }
