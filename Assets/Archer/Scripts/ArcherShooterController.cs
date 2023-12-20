@@ -24,6 +24,8 @@ namespace ArcherAttack.Archer
         [SerializeField] private float _inputHorizontalBound;
         [SerializeField] private float _inputVerticalBound;
 
+        private Quaternion _spineBoneInitialRotation;
+
         private ArrowController _arrow;
         private Pose _bowStringBoneInitialPose;
 
@@ -42,6 +44,8 @@ namespace ArcherAttack.Archer
         {
             _mainCamera = Camera.main;
             _enemyLayer = 1 << LayerMask.NameToLayer("EnemyRagdoll");
+
+            _spineBoneInitialRotation = _spineBone.localRotation;
 
             _bowStringBone.GetLocalPositionAndRotation(out Vector3 bowStringBonePosition, out Quaternion bowStringBoneRotation);
             _bowStringBoneInitialPose = new Pose(bowStringBonePosition, bowStringBoneRotation);
@@ -88,6 +92,8 @@ namespace ArcherAttack.Archer
 
         public void ResetBowAndArrow()
         {
+            _spineBone.localRotation = _spineBoneInitialRotation;
+
             _bowStringBone.localPosition = _bowStringBoneInitialPose.position;
             _bowStringBone.localRotation = _bowStringBoneInitialPose.rotation;
 

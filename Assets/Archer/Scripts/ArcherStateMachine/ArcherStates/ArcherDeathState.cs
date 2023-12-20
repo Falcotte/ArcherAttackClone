@@ -7,7 +7,7 @@ namespace ArcherAttack.Archer
         public override void EnterState(ArcherStateMachine stateMachine)
         {
             stateMachine.Archer.AnimationController.Die();
-            GameManager.Instance.ChangeState(GameState.GameLose);
+            GameManager.Instance.LoseGame();
         }
 
         public override void ExitState(ArcherStateMachine stateMachine)
@@ -18,6 +18,11 @@ namespace ArcherAttack.Archer
         public override void UpdateState(ArcherStateMachine stateMachine)
         {
 
+        }
+
+        public override string ToString()
+        {
+            return "Death";
         }
     }
 }

@@ -2,6 +2,7 @@ using ArcherAttack.Archer;
 using Cinemachine;
 using UnityEngine;
 using DG.Tweening;
+using ArcherAttack.Game;
 
 namespace ArcherAttack.Cameras
 {
@@ -10,6 +11,7 @@ namespace ArcherAttack.Cameras
         [SerializeField] private CinemachineVirtualCamera _followCamera;
         [SerializeField] private CinemachineVirtualCamera _aimCamera;
         [SerializeField] private CinemachineVirtualCamera _shootCamera;
+        [SerializeField] private CinemachineVirtualCamera _gameLoseCamera;
 
         [SerializeField] private float _shootCameraFollowDistance;
         [SerializeField] private float _shootCameraFollowDuration;
@@ -29,6 +31,8 @@ namespace ArcherAttack.Cameras
             ArcherController.OnAimed += SwitchToAimCamera;
 
             ArcherShooterController.OnShoot += SwitchToShootCamera;
+
+            GameManager.OnGameLose += SwitchToGameLoseCamera;
         }
 
         private void OnDisable()
@@ -39,6 +43,8 @@ namespace ArcherAttack.Cameras
             ArcherController.OnAimed -= SwitchToAimCamera;
 
             ArcherShooterController.OnShoot -= SwitchToShootCamera;
+
+            GameManager.OnGameLose -= SwitchToGameLoseCamera;
         }
 
         private void AdjustCameraPosition(float pathPosition)
@@ -67,6 +73,14 @@ namespace ArcherAttack.Cameras
             _aimCamera.Priority = 0;
 
             AnimateShootCamera();
+        }
+
+        private void SwitchToGameLoseCamera()
+        {
+            _gameLoseCamera.Priority = 10;
+            _shootCamera.Priority = 0;
+            _followCamera.Priority = 0;
+            _aimCamera.Priority = 0;
         }
 
         private void AnimateShootCamera()

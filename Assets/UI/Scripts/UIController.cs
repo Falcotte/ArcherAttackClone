@@ -1,4 +1,5 @@
 using ArcherAttack.Archer;
+using ArcherAttack.Game;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,6 +17,7 @@ namespace ArcherAttack.UI
         {
             ArcherController.OnAimed += ShowCrosshair;
             ArcherShooterController.OnShoot += HideCrosshair;
+            GameManager.OnGameLose += HideCrosshair;
 
             ArcherShooterController.OnHitDetected += SetCrosshairColor;
         }
@@ -24,6 +26,7 @@ namespace ArcherAttack.UI
         {
             ArcherController.OnAimed -= ShowCrosshair;
             ArcherShooterController.OnShoot -= HideCrosshair;
+            GameManager.OnGameLose -= HideCrosshair;
 
             ArcherShooterController.OnHitDetected -= SetCrosshairColor;
         }
