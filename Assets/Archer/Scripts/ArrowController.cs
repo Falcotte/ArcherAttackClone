@@ -1,4 +1,5 @@
 using AngryKoala.Ragdoll;
+using ArcherAttack.Game;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -27,6 +28,11 @@ namespace ArcherAttack.Archer
                     OnArrowMissed?.Invoke();
                     Destroy(gameObject);
                 }
+            }
+
+            if(GameManager.Instance.CurrentState == GameState.GameLose)
+            {
+                gameObject.SetActive(false);
             }
         }
 

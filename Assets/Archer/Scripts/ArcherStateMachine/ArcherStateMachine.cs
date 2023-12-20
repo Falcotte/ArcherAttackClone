@@ -22,6 +22,9 @@ namespace ArcherAttack.Archer
         private ArcherShootState _shootState = new();
         public ArcherShootState ShootState => _shootState;
 
+        private ArcherDeathState _deathState = new();
+        public ArcherDeathState DeathState => _deathState;
+
         private void Start()
         {
             _currentState = _idleState;

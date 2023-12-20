@@ -2170,6 +2170,11 @@ PrefabInstance:
       propertyPath: _target
       value: 
       objectReference: {fileID: 2133605395}
+    - target: {fileID: 3093990728534630439, guid: d910a84e9e105954c89bafa6bb2489f4,
+        type: 3}
+      propertyPath: _secondsToKillPlayer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5031313505100266703, guid: d910a84e9e105954c89bafa6bb2489f4,
         type: 3}
       propertyPath: m_LocalPosition.x

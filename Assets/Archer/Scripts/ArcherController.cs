@@ -1,3 +1,4 @@
+using ArcherAttack.Enemy;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -18,5 +19,20 @@ namespace ArcherAttack.Archer
         public ArcherShooterController ShooterController => _shooterController;
 
         public static UnityAction OnAimed;
+
+        private void OnEnable()
+        {
+            EnemyAttackState.OnPlayerKilled += KillPlayer;
+        }
+
+        private void OnDisable()
+        {
+            EnemyAttackState.OnPlayerKilled -= KillPlayer;
+        }
+
+        private void KillPlayer()
+        {
+            _stateMachine.ChangeState(_stateMachine.DeathState);
+        }
     }
 }

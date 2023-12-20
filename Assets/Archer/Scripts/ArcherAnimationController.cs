@@ -20,5 +20,7 @@ namespace ArcherAttack.Archer
         public void Shoot() => _animator.SetTrigger("Shoot");
 
         public void ResetShoot() => _animator.ResetTrigger("Shoot");
+
+        public void Die() => _animator.SetTrigger("Die");
     }
 }

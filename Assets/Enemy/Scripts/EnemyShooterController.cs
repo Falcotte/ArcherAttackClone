@@ -11,6 +11,9 @@ namespace ArcherAttack.Enemy
         [SerializeField] private Transform _target;
         public Transform Target => _target;
 
+        [SerializeField] private float _secondsToKillPlayer;
+        public float SecondsToKillPlayer => _secondsToKillPlayer;
+
         private void OnEnable()
         {
             ArcherShooterController.OnEnemyMissed += AttackPlayer;
