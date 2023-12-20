@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 5031313505100266703}
   - component: {fileID: 9069009559367571088}
   - component: {fileID: 5854568628169163722}
+  - component: {fileID: 3093990728534630439}
   - component: {fileID: 2490747031104104110}
   m_Layer: 0
   m_Name: Enemy
@@ -59,7 +60,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5250231139347450962}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.3964269, z: -0, w: 0.9180664}
+  m_LocalRotation: {x: 0, y: 0.3964269, z: 0, w: 0.9180664}
   m_LocalPosition: {x: -4.68, y: 0, z: 2.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -79,8 +80,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c7013a39b80c5548ac03b1afb0229e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ragdoll: {fileID: 2490747031104104110}
+  _enemyStateMachine: {fileID: 5854568628169163722}
   _animationController: {fileID: 6642717953257533874}
+  _shooterController: {fileID: 3093990728534630439}
+  _ragdoll: {fileID: 2490747031104104110}
+  _enemyIndex: 0
 --- !u!114 &5854568628169163722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,6 +98,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemy: {fileID: 9069009559367571088}
+--- !u!114 &3093990728534630439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5250231139347450962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9ede9480f965174396b0eba76f8e148, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemy: {fileID: 9069009559367571088}
+  _target: {fileID: 0}
 --- !u!114 &2490747031104104110
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -9,9 +9,9 @@ namespace ArcherAttack.Enemy
 
         private EnemyBaseState _currentState;
 
-        private EnemyIdleState _idleState;
+        private EnemyIdleState _idleState = new();
         public EnemyIdleState IdleState => _idleState;
-        private EnemyAttackState _attackState;
+        private EnemyAttackState _attackState = new();
         public EnemyAttackState AttackState => _attackState;
 
         private void Start()

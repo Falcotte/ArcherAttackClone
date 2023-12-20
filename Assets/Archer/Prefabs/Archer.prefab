@@ -3399,6 +3399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e690b26e16e97eb40bdb957e4a431f5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _archer: {fileID: 6811491660129314060}
   _shootPoint: {fileID: 956753756578014014}
   _spineBone: {fileID: 8799707363748344208}
   _arrowPrefab: {fileID: 8596579740365355739, guid: 5cbc01d6e25a7f04aac36a1ac3d4386f,
@@ -3411,8 +3412,8 @@ MonoBehaviour:
     position: {x: -0.623, y: -0.023, z: -0.237}
     rotation: {x: 0, y: 0, z: 0, w: 1}
   _inputSensitivity: 3
-  _inputHorizontalBound: 10
-  _inputVerticalBound: 10
+  _inputHorizontalBound: 20
+  _inputVerticalBound: 20
 --- !u!1 &8718114668488397808
 GameObject:
   m_ObjectHideFlags: 0

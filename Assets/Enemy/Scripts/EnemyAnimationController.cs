@@ -6,5 +6,7 @@ namespace ArcherAttack.Enemy
     {
         [SerializeField] private Animator _animator;
         public void DisableAnimator() => _animator.enabled = false;
+
+        public void Attack() => _animator.SetTrigger("Attack");
     }
 }

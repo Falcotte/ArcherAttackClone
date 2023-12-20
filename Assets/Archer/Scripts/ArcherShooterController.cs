@@ -6,6 +6,8 @@ namespace ArcherAttack.Archer
 {
     public class ArcherShooterController : MonoBehaviour
     {
+        [SerializeField] private ArcherController _archer;
+
         [SerializeField] private Transform _shootPoint;
         [SerializeField] private Transform _spineBone;
 
@@ -26,6 +28,7 @@ namespace ArcherAttack.Archer
         private Vector2 _currentInputVector;
 
         public static UnityAction OnShoot;
+        public static UnityAction<int> OnEnemyMissed;
 
         private void Awake()
         {
@@ -36,11 +39,13 @@ namespace ArcherAttack.Archer
         private void OnEnable()
         {
             InputController.OnDragDelta += AdjustAimRotation;
+            ArrowController.OnArrowMissed += MissEnemy;
         }
 
         private void OnDisable()
         {
             InputController.OnDragDelta -= AdjustAimRotation;
+            ArrowController.OnArrowMissed -= MissEnemy;
         }
 
         private void LateUpdate()
@@ -91,6 +96,11 @@ namespace ArcherAttack.Archer
             _arrow.StartMovement();
 
             OnShoot?.Invoke();
+        }
+
+        private void MissEnemy()
+        {
+            OnEnemyMissed?.Invoke(_archer.MovementController.CurrentWaypointIndex - 1);
         }
     }
 }

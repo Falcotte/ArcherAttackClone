@@ -37,7 +37,7 @@ namespace ArcherAttack.Archer
         {
             _currentState.ExitState(this);
 
-            Debug.Log($"Archer changing state to {nextState}");
+            Debug.Log($"Target changing state to {nextState}");
 
             _currentState = nextState;
             nextState.EnterState(this);
