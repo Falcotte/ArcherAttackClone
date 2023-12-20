@@ -27,6 +27,7 @@ namespace ArcherAttack.Enemy
             }
             else
             {
+                _enemy.StateMachine.ChangeState(_enemy.StateMachine.AttackState);
                 OnEnemyDamaged?.Invoke();
             }
         }
@@ -34,6 +35,7 @@ namespace ArcherAttack.Enemy
         private void Die()
         {
             _enemy.StateMachine.ChangeState(_enemy.StateMachine.DeathState);
+
             OnEnemyDeath?.Invoke();
         }
     }

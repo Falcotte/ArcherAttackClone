@@ -1,4 +1,5 @@
 using ArcherAttack.Enemy;
+using ArcherAttack.Game;
 using ArcherAttack.Inputs;
 using UnityEngine;
 using UnityEngine.Events;
@@ -87,7 +88,7 @@ namespace ArcherAttack.Archer
         public void AdjustAimRotation(Vector2 input)
         {
             input = input * _inputSensitivity * Time.deltaTime;
-            _currentInputVector = new Vector3(Mathf.Clamp(_currentInputVector.x + input.x,-_inputHorizontalBound,_inputHorizontalBound),
+            _currentInputVector = new Vector3(Mathf.Clamp(_currentInputVector.x + input.x, -_inputHorizontalBound, _inputHorizontalBound),
                 Mathf.Clamp(_currentInputVector.y + input.y, -_inputVerticalBound, _inputVerticalBound),
                 0f);
         }
@@ -117,7 +118,14 @@ namespace ArcherAttack.Archer
 
         private void KillEnemy()
         {
-            _archer.StateMachine.ChangeState(_archer.StateMachine.MoveState);
+            if(_archer.MovementController.CurrentWaypointIndex == _archer.MovementController.FinalWaypointIndex)
+            {
+                GameManager.Instance.WinGame();
+            }
+            else
+            {
+                _archer.StateMachine.ChangeState(_archer.StateMachine.MoveState);
+            }
         }
     }
 }

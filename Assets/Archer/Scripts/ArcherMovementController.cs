@@ -15,6 +15,9 @@ namespace ArcherAttack.Archer
         private int _previousWaypointIndex;
         private int _currentWaypointIndex;
         public int CurrentWaypointIndex => _currentWaypointIndex;
+        private int _finalWaypointIndex;
+        public int FinalWaypointIndex => _finalWaypointIndex;
+
         private float _waypointProgression;
 
         public static UnityAction OnMovementStarted;
@@ -23,6 +26,7 @@ namespace ArcherAttack.Archer
         private void Start()
         {
             _previousWaypointIndex = _currentWaypointIndex;
+            _finalWaypointIndex = _waypointManager.WaypointCount - 1;
         }
 
         public void MoveToNextWaypoint()
