@@ -29,11 +29,20 @@ namespace ArcherAttack.Archer
 
         private Vector2 _currentInputVector;
 
+        private Camera _mainCamera;
+        private int _enemyLayer;
+
+        public static UnityAction<bool> OnHitDetected;
+
         public static UnityAction OnShoot;
         public static UnityAction<int> OnEnemyMissed;
 
+
         private void Awake()
         {
+            _mainCamera = Camera.main;
+            _enemyLayer = 1 << LayerMask.NameToLayer("EnemyRagdoll");
+
             _bowStringBone.GetLocalPositionAndRotation(out Vector3 bowStringBonePosition, out Quaternion bowStringBoneRotation);
             _bowStringBoneInitialPose = new Pose(bowStringBonePosition, bowStringBoneRotation);
         }
@@ -95,12 +104,29 @@ namespace ArcherAttack.Archer
 
         public void CalculateArrowPath()
         {
-            Debug.DrawLine(_shootPoint.position, _shootPoint.position + _shootPoint.forward * 50f);
+            Ray ray = _mainCamera.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f));
+
+            if(Physics.Raycast(ray, Mathf.Infinity, _enemyLayer))
+            {
+                OnHitDetected?.Invoke(true);
+            }
+            else
+            {
+                OnHitDetected?.Invoke(false);
+            }
         }
 
         public void ShootArrow()
         {
             _arrow.transform.SetParent(null);
+
+            Ray ray = _mainCamera.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f));
+
+            if(Physics.Raycast(ray, out RaycastHit _aimHit, Mathf.Infinity))
+            {
+                _arrow.transform.LookAt(_aimHit.point);
+            }
+
             _arrow.StartMovement();
 
             OnShoot?.Invoke();
