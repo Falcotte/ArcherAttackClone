@@ -7,6 +7,7 @@ namespace ArcherAttack.Enemy
     {
         [SerializeField] private Ragdoll _ragdoll;
         public Ragdoll Ragdoll => _ragdoll;
+
         [SerializeField] private EnemyAnimationController _animationController;
         public EnemyAnimationController AnimationController => _animationController;
 
