@@ -25,7 +25,7 @@ namespace ArcherAttack.Enemy
         {
             if(_enemy.EnemyIndex == enemyIndex)
             {
-                _enemy.EnemyStateMachine.ChangeState(_enemy.EnemyStateMachine.AttackState);
+                _enemy.StateMachine.ChangeState(_enemy.StateMachine.AttackState);
             }
         }
     }

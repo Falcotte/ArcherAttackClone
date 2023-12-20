@@ -5,6 +5,9 @@ namespace ArcherAttack.Archer
 {
     public class ArcherController : MonoBehaviour
     {
+        [SerializeField] private ArcherStateMachine _stateMachine;
+        public ArcherStateMachine StateMachine => _stateMachine;
+
         [SerializeField] private ArcherMovementController _movementController;
         public ArcherMovementController MovementController => _movementController;
 

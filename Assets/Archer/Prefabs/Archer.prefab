@@ -3357,6 +3357,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf0b9a435b9004c43b0833cc1b825bf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _stateMachine: {fileID: 7583568599094667885}
   _movementController: {fileID: 8793082535136830707}
   _animationController: {fileID: 1682998181774437826}
   _shooterController: {fileID: 4852880913258521662}

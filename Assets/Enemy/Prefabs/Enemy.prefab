@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 5031313505100266703}
   - component: {fileID: 9069009559367571088}
   - component: {fileID: 5854568628169163722}
+  - component: {fileID: 4547348625213841199}
   - component: {fileID: 3093990728534630439}
   - component: {fileID: 2490747031104104110}
   m_Layer: 0
@@ -80,8 +81,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c7013a39b80c5548ac03b1afb0229e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyStateMachine: {fileID: 5854568628169163722}
+  _stateMachine: {fileID: 5854568628169163722}
   _animationController: {fileID: 6642717953257533874}
+  _healthController: {fileID: 4547348625213841199}
   _shooterController: {fileID: 3093990728534630439}
   _ragdoll: {fileID: 2490747031104104110}
   _enemyIndex: 0
@@ -98,6 +100,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemy: {fileID: 9069009559367571088}
+--- !u!114 &4547348625213841199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5250231139347450962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8281e7d7adcf00a4ea9de46b1da63aa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemy: {fileID: 9069009559367571088}
+  _maxHealth: 2
 --- !u!114 &3093990728534630439
 MonoBehaviour:
   m_ObjectHideFlags: 0

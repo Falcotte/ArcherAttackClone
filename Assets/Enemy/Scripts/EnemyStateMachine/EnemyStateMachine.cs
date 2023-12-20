@@ -14,6 +14,9 @@ namespace ArcherAttack.Enemy
         private EnemyAttackState _attackState = new();
         public EnemyAttackState AttackState => _attackState;
 
+        private EnemyDeathState _deathState = new();
+        public EnemyDeathState DeathState => _deathState;
+
         private void Start()
         {
             _currentState = _idleState;
@@ -27,6 +30,11 @@ namespace ArcherAttack.Enemy
 
         public void ChangeState(EnemyBaseState nextState)
         {
+            if(nextState == _currentState)
+            {
+                return;
+            }
+
             _currentState.ExitState(this);
 
             Debug.Log($"Enemy changing state to {nextState}");

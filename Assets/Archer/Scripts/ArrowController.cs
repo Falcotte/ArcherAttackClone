@@ -15,6 +15,7 @@ namespace ArcherAttack.Archer
         private float _flightTime;
 
         public static UnityAction OnArrowMissed;
+        public static UnityAction OnArrowHit;
 
         private void Update()
         {
@@ -54,10 +55,10 @@ namespace ArcherAttack.Archer
 
             if(other.TryGetComponent(out RagdollComponent ragdollComponent))
             {
-                ragdollComponent.Ragdoll.EnableRagdoll();
-                ragdollComponent.Ragdoll.Enemy.AnimationController.DisableAnimator();
+                ragdollComponent.Ragdoll.Enemy.HealthController.TakeDamage();
 
                 transform.SetParent(ragdollComponent.transform);
+                OnArrowHit?.Invoke();
             }
             else
             {

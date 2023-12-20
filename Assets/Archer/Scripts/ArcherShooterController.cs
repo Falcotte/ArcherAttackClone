@@ -1,3 +1,4 @@
+using ArcherAttack.Enemy;
 using ArcherAttack.Inputs;
 using UnityEngine;
 using UnityEngine.Events;
@@ -40,12 +41,18 @@ namespace ArcherAttack.Archer
         {
             InputController.OnDragDelta += AdjustAimRotation;
             ArrowController.OnArrowMissed += MissEnemy;
+
+            EnemyHealthController.OnEnemyDamaged += HitEnemy;
+            EnemyHealthController.OnEnemyDeath += KillEnemy;
         }
 
         private void OnDisable()
         {
             InputController.OnDragDelta -= AdjustAimRotation;
             ArrowController.OnArrowMissed -= MissEnemy;
+
+            EnemyHealthController.OnEnemyDamaged -= HitEnemy;
+            EnemyHealthController.OnEnemyDeath -= KillEnemy;
         }
 
         private void LateUpdate()
@@ -101,6 +108,16 @@ namespace ArcherAttack.Archer
         private void MissEnemy()
         {
             OnEnemyMissed?.Invoke(_archer.MovementController.CurrentWaypointIndex - 1);
+        }
+
+        private void HitEnemy()
+        {
+            _archer.StateMachine.ChangeState(_archer.StateMachine.IdleState);
+        }
+
+        private void KillEnemy()
+        {
+            _archer.StateMachine.ChangeState(_archer.StateMachine.MoveState);
         }
     }
 }

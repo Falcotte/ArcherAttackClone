@@ -4,7 +4,8 @@ namespace ArcherAttack.Enemy
     {
         public override void EnterState(EnemyStateMachine stateMachine)
         {
-
+            stateMachine.Enemy.Ragdoll.EnableRagdoll();
+            stateMachine.Enemy.AnimationController.DisableAnimator();
         }
 
         public override void ExitState(EnemyStateMachine stateMachine)

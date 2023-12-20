@@ -10,7 +10,6 @@ namespace ArcherAttack.Archer
             stateMachine.Archer.AnimationController.Shoot();
 
             ArrowController.OnArrowMissed += TriggerMiss;
-
         }
 
         public override void ExitState(ArcherStateMachine stateMachine)
