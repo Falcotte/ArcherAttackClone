@@ -1,12 +1,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static Cinemachine.DocumentationSortingAttribute;
 
 namespace ArcherAttack.Game
 {
     public class LoadingManager : MonoSingleton<LoadingManager>
     {
         [SerializeField] private List<string> _permanentScenes;
+
+        [SerializeField] private LevelManager _levelManager;
+
+        private string _currentLoadedLevel;
 
         protected new void Awake()
         {
@@ -15,6 +20,7 @@ namespace ArcherAttack.Game
             Application.targetFrameRate = 60;
 
             LoadPermanentScenes();
+            LoadLevel(0);
         }
 
         private void OnEnable()
@@ -39,6 +45,24 @@ namespace ArcherAttack.Game
                     SceneManager.LoadScene(scene, LoadSceneMode.Additive);
                 }
             }
+        }
+
+        private void LoadLevel(int levelIndex)
+        {
+            SceneManager.LoadScene(_levelManager.Levels[levelIndex], LoadSceneMode.Additive);
+            _currentLoadedLevel = _levelManager.Levels[levelIndex];
+        }
+
+        public void LoadNextLevel()
+        {
+            SceneManager.UnloadSceneAsync(_currentLoadedLevel);
+            LoadLevel(1);
+        }
+
+        public void ReloadLevel()
+        {
+            SceneManager.UnloadSceneAsync(_currentLoadedLevel);
+            SceneManager.LoadScene(_currentLoadedLevel, LoadSceneMode.Additive);
         }
 
         #endregion
