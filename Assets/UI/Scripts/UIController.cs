@@ -9,16 +9,23 @@ namespace ArcherAttack.UI
     {
         [SerializeField] private Image _crosshair;
 
+        [SerializeField] private Color _crosshairMissColor;
+        [SerializeField] private Color _crosshairHitColor;
+
         private void OnEnable()
         {
             ArcherController.OnAimed += ShowCrosshair;
             ArcherShooterController.OnShoot += HideCrosshair;
+
+            ArcherShooterController.OnHitDetected += SetCrosshairColor;
         }
 
         private void OnDisable()
         {
             ArcherController.OnAimed -= ShowCrosshair;
             ArcherShooterController.OnShoot -= HideCrosshair;
+
+            ArcherShooterController.OnHitDetected -= SetCrosshairColor;
         }
 
         private void ShowCrosshair()
@@ -29,6 +36,18 @@ namespace ArcherAttack.UI
         private void HideCrosshair()
         {
             _crosshair.transform.DOScale(0f, .25f);
+        }
+
+        private void SetCrosshairColor(bool isHit)
+        {
+            if(isHit)
+            {
+                _crosshair.color = _crosshairHitColor;
+            }
+            else
+            {
+                _crosshair.color = _crosshairMissColor;
+            }
         }
     }
 }
