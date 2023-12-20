@@ -19,12 +19,12 @@ namespace ArcherAttack.Game
 
         public GameState InitialState = GameState.MainMenu;
 
-        private GameState currentState;
+        private GameState _currentState;
         public GameState CurrentState
         {
             get
             {
-                return currentState;
+                return _currentState;
             }
         }
 
@@ -32,13 +32,13 @@ namespace ArcherAttack.Game
         {
             base.Awake();
 
-            currentState = InitialState;
+            _currentState = InitialState;
         }
 
         public void ChangeState(GameState gameState)
         {
-            currentState = gameState;
-            Debug.Log($"GameState changed -> [{currentState}]");
+            _currentState = gameState;
+            Debug.Log($"GameState changed -> [{_currentState}]");
 
             OnGameStateChange?.Invoke(gameState);
         }
