@@ -1,3 +1,4 @@
+using ArcherAttack.Game;
 using ArcherAttack.Inputs;
 
 namespace ArcherAttack.Archer
@@ -24,9 +25,10 @@ namespace ArcherAttack.Archer
             {
                 if(stateMachine.Archer.MovementController.CurrentWaypointIndex == 0)
                 {
+                    GameManager.Instance.StartGame();
                     stateMachine.ChangeState(stateMachine.MoveState);
                 }
-                else
+                else if(GameManager.Instance.CurrentState != GameState.GameLose)
                 {
                     stateMachine.ChangeState(stateMachine.DrawState);
                 }

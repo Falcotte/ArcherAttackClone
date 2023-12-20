@@ -1,3 +1,4 @@
+using ArcherAttack.Game;
 using DG.Tweening;
 using UnityEngine.Events;
 
@@ -13,7 +14,13 @@ namespace ArcherAttack.Enemy
 
             Sequence killPlayerSequence = DOTween.Sequence().SetId("KillPlayer");
             killPlayerSequence.AppendInterval(stateMachine.Enemy.ShooterController.SecondsToKillPlayer);
-            killPlayerSequence.AppendCallback(() => OnPlayerKilled?.Invoke());
+            killPlayerSequence.AppendCallback(() =>
+            {
+                if(GameManager.Instance.CurrentState != GameState.GameLose)
+                {
+                    OnPlayerKilled?.Invoke();
+                }
+            });
 
             stateMachine.Enemy.AnimationController.Attack();
         }

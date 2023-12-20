@@ -24,6 +24,8 @@ namespace ArcherAttack.Archer
         [SerializeField] private float _inputHorizontalBound;
         [SerializeField] private float _inputVerticalBound;
 
+        [SerializeField] private int _arrowCount;
+
         private Quaternion _spineBoneInitialRotation;
 
         private ArrowController _arrow;
@@ -37,8 +39,8 @@ namespace ArcherAttack.Archer
         public static UnityAction<bool> OnHitDetected;
 
         public static UnityAction OnShoot;
+        public static UnityAction<int> OnArrowCountUpdated;
         public static UnityAction<int> OnEnemyMissed;
-
 
         private void Awake()
         {
@@ -67,6 +69,11 @@ namespace ArcherAttack.Archer
 
             EnemyHealthController.OnEnemyDamaged -= HitEnemy;
             EnemyHealthController.OnEnemyDeath -= KillEnemy;
+        }
+
+        private void Start()
+        {
+            OnArrowCountUpdated?.Invoke(_arrowCount);
         }
 
         private void LateUpdate()
@@ -135,22 +142,41 @@ namespace ArcherAttack.Archer
 
             _arrow.StartMovement();
 
+            _arrowCount--;
+            OnArrowCountUpdated?.Invoke(_arrowCount);
+
             OnShoot?.Invoke();
         }
 
         private void MissEnemy()
         {
             OnEnemyMissed?.Invoke(_archer.MovementController.CurrentWaypointIndex - 1);
+
+            if(_arrowCount <= 0)
+            {
+                GameManager.Instance.LoseGame();
+            }
         }
 
         private void HitEnemy()
         {
-            _archer.StateMachine.ChangeState(_archer.StateMachine.IdleState);
+            if(_arrowCount <= 0)
+            {
+                GameManager.Instance.LoseGame();
+            }
+            else
+            {
+                _archer.StateMachine.ChangeState(_archer.StateMachine.IdleState);
+            }
         }
 
         private void KillEnemy()
         {
-            if(_archer.MovementController.CurrentWaypointIndex == _archer.MovementController.FinalWaypointIndex)
+            if(_arrowCount <= 0 && _archer.MovementController.CurrentWaypointIndex < _archer.MovementController.FinalWaypointIndex)
+            {
+                GameManager.Instance.LoseGame();
+            }
+            else if(_archer.MovementController.CurrentWaypointIndex == _archer.MovementController.FinalWaypointIndex)
             {
                 GameManager.Instance.WinGame();
             }

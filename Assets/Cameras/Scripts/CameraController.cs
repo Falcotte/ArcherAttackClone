@@ -61,6 +61,9 @@ namespace ArcherAttack.Cameras
 
         private void SwitchToFollowCamera()
         {
+            if(GameManager.Instance.CurrentState == GameState.GameLose)
+                return;
+
             _followCamera.Priority = 10;
             _aimCamera.Priority = 0;
             _shootCamera.Priority = 0;
