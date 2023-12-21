@@ -1,4 +1,5 @@
 using ArcherAttack.Game;
+using ArcherAttack.UI;
 using DG.Tweening;
 using UnityEngine.Events;
 
@@ -18,16 +19,19 @@ namespace ArcherAttack.Enemy
             {
                 if(GameManager.Instance.CurrentState != GameState.GameLose)
                 {
+                    UIManager.Instance.HideGettingAttackedIndicator();
                     OnPlayerKilled?.Invoke();
                 }
             });
 
             stateMachine.Enemy.AnimationController.Attack();
+            UIManager.Instance.ShowGettingAttackedIndicator();
         }
 
         public override void ExitState(EnemyStateMachine stateMachine)
         {
             DOTween.Kill("KillPlayer");
+            UIManager.Instance.HideGettingAttackedIndicator();
         }
 
         public override void UpdateState(EnemyStateMachine stateMachine)

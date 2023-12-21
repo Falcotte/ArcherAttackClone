@@ -28,6 +28,8 @@ namespace ArcherAttack.UI
         [SerializeField] private CanvasGroup _winUI;
         [SerializeField] private CanvasGroup _loseUI;
 
+        [SerializeField] private Image _gettingAttackedIndicator;
+
         [SerializeField] private Image _killTypeImageBackground;
         [SerializeField] private Image _killTypeImage;
         [SerializeField] private TextMeshProUGUI _killTypeText;
@@ -46,6 +48,7 @@ namespace ArcherAttack.UI
         [SerializeField] private Button _continueButton;
         [SerializeField] private Button _retryButton;
 
+        private Color _gettingAttackedDefaultColor;
         private int _arrowCount;
 
         private void OnEnable()
@@ -96,6 +99,8 @@ namespace ArcherAttack.UI
 
             _killTypeImageBackground.gameObject.SetActive(false);
             _killTypeImageBackground.transform.localScale = Vector3.zero;
+
+            _gettingAttackedDefaultColor = _gettingAttackedIndicator.color;
 
             _mainMenuUI.alpha = 1f;
             _mainMenuUI.gameObject.SetActive(true);
@@ -218,6 +223,22 @@ namespace ArcherAttack.UI
             {
                 _killTypeImageBackground.gameObject.SetActive(false);
             });
+        }
+
+        public void ShowGettingAttackedIndicator()
+        {
+            if(_gettingAttackedIndicator.gameObject.activeInHierarchy)
+                return;
+
+            _gettingAttackedIndicator.gameObject.SetActive(true);
+            _gettingAttackedIndicator.color = new Color(_gettingAttackedDefaultColor.r, _gettingAttackedDefaultColor.g, _gettingAttackedDefaultColor.b, 0f);
+            _gettingAttackedIndicator.DOFade(.05f, .5f).SetLoops(-1, LoopType.Yoyo).SetId("GettingAttacked");
+        }
+
+        public void HideGettingAttackedIndicator()
+        {
+            DOTween.Kill("GettingAttacked");
+            _gettingAttackedIndicator.gameObject.SetActive(false);
         }
 
         private void ShowWinUI()
