@@ -1,3 +1,4 @@
+using ArcherAttack.Game.Data;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -65,6 +66,8 @@ namespace ArcherAttack.Game
         public void WinGame()
         {
             OnGameWin?.Invoke();
+
+            DataManager.PlayerData.Currency += (DataManager.PlayerData.Level + 1) * 100;
             ChangeState(GameState.GameWin);
         }
 

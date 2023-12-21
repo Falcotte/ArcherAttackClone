@@ -1,5 +1,6 @@
 using ArcherAttack.Archer;
 using ArcherAttack.Game;
+using ArcherAttack.Game.Data;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -24,6 +25,9 @@ namespace ArcherAttack.UI
         [SerializeField] private CanvasGroup _gameplayUI;
         [SerializeField] private CanvasGroup _winUI;
         [SerializeField] private CanvasGroup _loseUI;
+
+        [SerializeField] private TextMeshProUGUI _currencyText;
+        [SerializeField] private TextMeshProUGUI _currencyRewardText;
 
         [SerializeField] private Button _startGameButton;
         [SerializeField] private Button _continueButton;
@@ -70,6 +74,8 @@ namespace ArcherAttack.UI
         private void Start()
         {
             _arrowCountUI.transform.localScale = Vector3.zero;
+
+            _currencyText.text = $"${DataManager.PlayerData.Currency}";
 
             _mainMenuUI.alpha = 1f;
             _mainMenuUI.gameObject.SetActive(true);
@@ -169,6 +175,9 @@ namespace ArcherAttack.UI
             showWinUISequence.AppendCallback(() =>
             {
                 _continueButton.enabled = false;
+
+                _currencyRewardText.text = $"+{(DataManager.PlayerData.Level + 1) * 100}";
+                _currencyText.text = $"${DataManager.PlayerData.Currency}";
 
                 _winUI.gameObject.SetActive(true);
                 _winUI.DOFade(1f, .25f).OnComplete(() =>
