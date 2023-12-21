@@ -28,8 +28,16 @@ namespace ArcherAttack.UI
         [SerializeField] private CanvasGroup _winUI;
         [SerializeField] private CanvasGroup _loseUI;
 
+        [SerializeField] private Image _killTypeImageBackground;
         [SerializeField] private Image _killTypeImage;
         [SerializeField] private TextMeshProUGUI _killTypeText;
+
+        [SerializeField] private Sprite _killTypeHeadshot;
+        [SerializeField] private Sprite _killTypeBody;
+        [SerializeField] private Sprite _killTypeArms;
+        [SerializeField] private Sprite _killTypeLegs;
+
+        [SerializeField] private TextMeshProUGUI _defeatMessage;
 
         [SerializeField] private TextMeshProUGUI _currencyText;
         [SerializeField] private TextMeshProUGUI _currencyRewardText;
@@ -37,6 +45,8 @@ namespace ArcherAttack.UI
         [SerializeField] private Button _startGameButton;
         [SerializeField] private Button _continueButton;
         [SerializeField] private Button _retryButton;
+
+        private int _arrowCount;
 
         private void OnEnable()
         {
@@ -84,8 +94,8 @@ namespace ArcherAttack.UI
 
             _currencyText.text = $"${DataManager.PlayerData.Currency}";
 
-            _killTypeImage.gameObject.SetActive(false);
-            _killTypeImage.transform.localScale = Vector3.zero;
+            _killTypeImageBackground.gameObject.SetActive(false);
+            _killTypeImageBackground.transform.localScale = Vector3.zero;
 
             _mainMenuUI.alpha = 1f;
             _mainMenuUI.gameObject.SetActive(true);
@@ -131,6 +141,7 @@ namespace ArcherAttack.UI
 
         private void UpdateArrowCount(int arrowCount)
         {
+            _arrowCount = arrowCount;
             _arrowCountText.text = arrowCount.ToString();
         }
 
@@ -178,30 +189,34 @@ namespace ArcherAttack.UI
 
         private void ShowKillType(BodyParts bodyPart)
         {
-            _killTypeImage.gameObject.SetActive(true);
+            _killTypeImageBackground.gameObject.SetActive(true);
 
             switch(bodyPart)
             {
                 case BodyParts.Head:
                     _killTypeText.text = "HEADSHOT";
+                    _killTypeImage.sprite = _killTypeHeadshot;
                     break;
                 case BodyParts.CenterMass:
                     _killTypeText.text = "Body";
+                    _killTypeImage.sprite = _killTypeBody;
                     break;
                 case BodyParts.Arm:
                     _killTypeText.text = "Arm";
+                    _killTypeImage.sprite = _killTypeArms;
                     break;
                 case BodyParts.Leg:
                     _killTypeText.text = "Legs";
+                    _killTypeImage.sprite = _killTypeLegs;
                     break;
             }
 
             Sequence showKillTypeSequence = DOTween.Sequence();
-            showKillTypeSequence.Append(_killTypeImage.transform.DOScale(1f, .25f).SetEase(Ease.OutBack));
+            showKillTypeSequence.Append(_killTypeImageBackground.transform.DOScale(1f, .25f).SetEase(Ease.OutBack));
             showKillTypeSequence.AppendInterval(1f);
-            showKillTypeSequence.Append(_killTypeImage.transform.DOScale(0f, .25f)).OnComplete(() =>
+            showKillTypeSequence.Append(_killTypeImageBackground.transform.DOScale(0f, .25f)).OnComplete(() =>
             {
-                _killTypeImage.gameObject.SetActive(false);
+                _killTypeImageBackground.gameObject.SetActive(false);
             });
         }
 
@@ -238,6 +253,14 @@ namespace ArcherAttack.UI
         {
             HideGameplayUI();
 
+            if(_arrowCount <= 0)
+            {
+                _defeatMessage.text = "Out of Arrows";
+            }
+            else
+            {
+                _defeatMessage.text = "Killed by Enemy";
+            }
             Sequence showLoseUISequence = DOTween.Sequence();
             showLoseUISequence.AppendInterval(1.5f);
             showLoseUISequence.AppendCallback(() =>
