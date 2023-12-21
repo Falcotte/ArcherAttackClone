@@ -7,8 +7,11 @@ using UnityEngine.UI;
 
 namespace ArcherAttack.UI
 {
-    public class UIController : MonoBehaviour
+    public class UIManager : MonoSingleton<UIManager>
     {
+        [SerializeField] private Camera _uICamera;
+        public Camera UICamera => _uICamera;
+
         [SerializeField] private Image _crosshair;
 
         [SerializeField] private Color _crosshairMissColor;

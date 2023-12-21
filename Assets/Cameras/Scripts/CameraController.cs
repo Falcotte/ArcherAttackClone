@@ -3,11 +3,15 @@ using Cinemachine;
 using UnityEngine;
 using DG.Tweening;
 using ArcherAttack.Game;
+using UnityEngine.Rendering.Universal;
+using ArcherAttack.UI;
 
 namespace ArcherAttack.Cameras
 {
     public class CameraController : MonoBehaviour
     {
+        [SerializeField] private Camera _mainCamera;
+
         [SerializeField] private CinemachineVirtualCamera _followCamera;
         [SerializeField] private CinemachineVirtualCamera _aimCamera;
         [SerializeField] private CinemachineVirtualCamera _shootCamera;
@@ -15,6 +19,8 @@ namespace ArcherAttack.Cameras
 
         [SerializeField] private float _shootCameraFollowDistance;
         [SerializeField] private float _shootCameraFollowDuration;
+
+        private UniversalAdditionalCameraData _cameraData;
 
         private CinemachineTrackedDolly _dolly;
 
@@ -45,6 +51,21 @@ namespace ArcherAttack.Cameras
             ArcherShooterController.OnShoot -= SwitchToShootCamera;
 
             GameManager.OnGameLose -= SwitchToGameLoseCamera;
+        }
+
+        private void Start()
+        {
+            AdjustCameraStack();
+        }
+
+        private void AdjustCameraStack()
+        {
+            _cameraData = _mainCamera.GetUniversalAdditionalCameraData();
+
+            var camDataUI = UIManager.Instance.UICamera.GetUniversalAdditionalCameraData();
+            camDataUI.renderType = CameraRenderType.Overlay;
+
+            _cameraData.cameraStack.Add(UIManager.Instance.UICamera);
         }
 
         private void AdjustCameraPosition(float pathPosition)

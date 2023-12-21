@@ -790,6 +790,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44602577fa0252e42ad29264150dcb29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _mainCamera: {fileID: 330585545}
   _followCamera: {fileID: 703781964}
   _aimCamera: {fileID: 318191190}
   _shootCamera: {fileID: 5261351115468925956}
@@ -1831,12 +1832,12 @@ PrefabInstance:
     - target: {fileID: 3301565238086980853, guid: a4e64e094e1b2f845bd2888fcd43471d,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00000005616572
+      value: 0.00000005616572
       objectReference: {fileID: 0}
     - target: {fileID: 3301565238086980853, guid: a4e64e094e1b2f845bd2888fcd43471d,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000000039778936
+      value: -0.000000039778936
       objectReference: {fileID: 0}
     - target: {fileID: 8630252761603516944, guid: a4e64e094e1b2f845bd2888fcd43471d,
         type: 3}

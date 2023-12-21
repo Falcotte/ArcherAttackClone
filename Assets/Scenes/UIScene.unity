@@ -665,7 +665,7 @@ MonoBehaviour:
   m_RenderShadows: 1
   m_RequiresDepthTextureOption: 2
   m_RequiresOpaqueTextureOption: 2
-  m_CameraType: 0
+  m_CameraType: 1
   m_Cameras: []
   m_RendererIndex: -1
   m_VolumeLayerMask:
@@ -1750,6 +1750,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aadcbeaa2296f14e89031c789e15631, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _uICamera: {fileID: 431479845}
   _crosshair: {fileID: 1150291689}
   _crosshairMissColor: {r: 0.7610062, g: 0.7610062, b: 0.7610062, a: 1}
   _crosshairHitColor: {r: 0, g: 1, b: 0.120474815, a: 1}
