@@ -1,6 +1,7 @@
 using ArcherAttack.Enemy;
 using ArcherAttack.Game;
 using ArcherAttack.Inputs;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -172,18 +173,23 @@ namespace ArcherAttack.Archer
 
         private void KillEnemy()
         {
-            if(_arrowCount <= 0 && _archer.MovementController.CurrentWaypointIndex < _archer.MovementController.FinalWaypointIndex)
+            Sequence killEnemySequence = DOTween.Sequence();
+            killEnemySequence.AppendInterval(1.5f);
+            killEnemySequence.AppendCallback(() =>
             {
-                GameManager.Instance.LoseGame();
-            }
-            else if(_archer.MovementController.CurrentWaypointIndex == _archer.MovementController.FinalWaypointIndex)
-            {
-                GameManager.Instance.WinGame();
-            }
-            else
-            {
-                _archer.StateMachine.ChangeState(_archer.StateMachine.MoveState);
-            }
+                if(_arrowCount <= 0 && _archer.MovementController.CurrentWaypointIndex < _archer.MovementController.FinalWaypointIndex)
+                {
+                    GameManager.Instance.LoseGame();
+                }
+                else if(_archer.MovementController.CurrentWaypointIndex == _archer.MovementController.FinalWaypointIndex)
+                {
+                    GameManager.Instance.WinGame();
+                }
+                else
+                {
+                    _archer.StateMachine.ChangeState(_archer.StateMachine.MoveState);
+                }
+            });
         }
     }
 }

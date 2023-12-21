@@ -1,10 +1,12 @@
 using ArcherAttack.Archer;
+using ArcherAttack.Enemy;
 using ArcherAttack.Game;
 using ArcherAttack.Game.Data;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static AngryKoala.Ragdoll.RagdollComponent;
 
 namespace ArcherAttack.UI
 {
@@ -26,6 +28,9 @@ namespace ArcherAttack.UI
         [SerializeField] private CanvasGroup _winUI;
         [SerializeField] private CanvasGroup _loseUI;
 
+        [SerializeField] private Image _killTypeImage;
+        [SerializeField] private TextMeshProUGUI _killTypeText;
+
         [SerializeField] private TextMeshProUGUI _currencyText;
         [SerializeField] private TextMeshProUGUI _currencyRewardText;
 
@@ -44,6 +49,7 @@ namespace ArcherAttack.UI
             GameManager.OnGameLose += ShowLoseUI;
 
             ArcherShooterController.OnArrowCountUpdated += UpdateArrowCount;
+            EnemyHealthController.OnEnemyKilledByArrow += ShowKillType;
 
             ArcherController.OnAimed += ShowCrosshair;
             ArcherShooterController.OnShoot += HideCrosshair;
@@ -63,6 +69,7 @@ namespace ArcherAttack.UI
             GameManager.OnGameLose -= ShowLoseUI;
 
             ArcherShooterController.OnArrowCountUpdated -= UpdateArrowCount;
+            EnemyHealthController.OnEnemyKilledByArrow -= ShowKillType;
 
             ArcherController.OnAimed -= ShowCrosshair;
             ArcherShooterController.OnShoot -= HideCrosshair;
@@ -76,6 +83,9 @@ namespace ArcherAttack.UI
             _arrowCountUI.transform.localScale = Vector3.zero;
 
             _currencyText.text = $"${DataManager.PlayerData.Currency}";
+
+            _killTypeImage.gameObject.SetActive(false);
+            _killTypeImage.transform.localScale = Vector3.zero;
 
             _mainMenuUI.alpha = 1f;
             _mainMenuUI.gameObject.SetActive(true);
@@ -163,6 +173,35 @@ namespace ArcherAttack.UI
             _gameplayUI.DOFade(0f, .25f).OnComplete(() =>
             {
                 _gameplayUI.gameObject.SetActive(false);
+            });
+        }
+
+        private void ShowKillType(BodyParts bodyPart)
+        {
+            _killTypeImage.gameObject.SetActive(true);
+
+            switch(bodyPart)
+            {
+                case BodyParts.Head:
+                    _killTypeText.text = "HEADSHOT";
+                    break;
+                case BodyParts.CenterMass:
+                    _killTypeText.text = "Body";
+                    break;
+                case BodyParts.Arm:
+                    _killTypeText.text = "Arm";
+                    break;
+                case BodyParts.Leg:
+                    _killTypeText.text = "Legs";
+                    break;
+            }
+
+            Sequence showKillTypeSequence = DOTween.Sequence();
+            showKillTypeSequence.Append(_killTypeImage.transform.DOScale(1f, .25f).SetEase(Ease.OutBack));
+            showKillTypeSequence.AppendInterval(1f);
+            showKillTypeSequence.Append(_killTypeImage.transform.DOScale(0f, .25f)).OnComplete(() =>
+            {
+                _killTypeImage.gameObject.SetActive(false);
             });
         }
 

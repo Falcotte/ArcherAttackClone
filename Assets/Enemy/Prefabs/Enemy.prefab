@@ -792,7 +792,7 @@ MonoBehaviour:
   _ragdoll: {fileID: 2490747031104104110}
   componentRigidbody: {fileID: 499235278293960469}
   componentCollider: {fileID: 855492335051238805}
-  bodyPart: 0
+  bodyPart: 2
   layerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -913,7 +913,7 @@ MonoBehaviour:
   _ragdoll: {fileID: 2490747031104104110}
   componentRigidbody: {fileID: 8028966270112513002}
   componentCollider: {fileID: 2090366002665784898}
-  bodyPart: 0
+  bodyPart: 2
   layerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -1032,7 +1032,7 @@ MonoBehaviour:
   _ragdoll: {fileID: 2490747031104104110}
   componentRigidbody: {fileID: 7911103234463818905}
   componentCollider: {fileID: 5320723766775437445}
-  bodyPart: 0
+  bodyPart: 1
   layerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -1153,7 +1153,7 @@ MonoBehaviour:
   _ragdoll: {fileID: 2490747031104104110}
   componentRigidbody: {fileID: 6774169846858255910}
   componentCollider: {fileID: 993163702986325272}
-  bodyPart: 0
+  bodyPart: 3
   layerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -1274,7 +1274,7 @@ MonoBehaviour:
   _ragdoll: {fileID: 2490747031104104110}
   componentRigidbody: {fileID: 2308752693098991738}
   componentCollider: {fileID: 3406806898203353453}
-  bodyPart: 0
+  bodyPart: 3
   layerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -1395,7 +1395,7 @@ MonoBehaviour:
   _ragdoll: {fileID: 2490747031104104110}
   componentRigidbody: {fileID: 6409703574769279721}
   componentCollider: {fileID: 7419932400347947706}
-  bodyPart: 0
+  bodyPart: 3
   layerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -1516,7 +1516,7 @@ MonoBehaviour:
   _ragdoll: {fileID: 2490747031104104110}
   componentRigidbody: {fileID: 3432398749488852466}
   componentCollider: {fileID: 1075577289366810231}
-  bodyPart: 0
+  bodyPart: 3
   layerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -1637,7 +1637,7 @@ MonoBehaviour:
   _ragdoll: {fileID: 2490747031104104110}
   componentRigidbody: {fileID: 4793562797256767025}
   componentCollider: {fileID: 4298179569928494371}
-  bodyPart: 0
+  bodyPart: 2
   layerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -1710,7 +1710,7 @@ MonoBehaviour:
   _ragdoll: {fileID: 2490747031104104110}
   componentRigidbody: {fileID: 3757274836985725816}
   componentCollider: {fileID: 4533668822055257030}
-  bodyPart: 0
+  bodyPart: 1
   layerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -1871,7 +1871,7 @@ MonoBehaviour:
   _ragdoll: {fileID: 2490747031104104110}
   componentRigidbody: {fileID: 1501302709689737157}
   componentCollider: {fileID: 1746459729942845159}
-  bodyPart: 0
+  bodyPart: 2
   layerMask:
     serializedVersion: 2
     m_Bits: 64

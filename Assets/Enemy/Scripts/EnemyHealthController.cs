@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UI;
+using static AngryKoala.Ragdoll.RagdollComponent;
 
 namespace ArcherAttack.Enemy
 {
@@ -16,6 +16,8 @@ namespace ArcherAttack.Enemy
         public static UnityAction OnEnemyDamaged;
         public static UnityAction OnEnemyDeath;
 
+        public static UnityAction<BodyParts> OnEnemyKilledByArrow;
+
         private void Start()
         {
             _currentHealth = _maxHealth;
@@ -26,6 +28,21 @@ namespace ArcherAttack.Enemy
             _currentHealth--;
             if(_currentHealth <= 0)
             {
+                Die();
+            }
+            else
+            {
+                _enemy.StateMachine.ChangeState(_enemy.StateMachine.AttackState);
+                OnEnemyDamaged?.Invoke();
+            }
+        }
+
+        public void TakeDamage(BodyParts bodyPart)
+        {
+            _currentHealth--;
+            if(_currentHealth <= 0)
+            {
+                OnEnemyKilledByArrow?.Invoke(bodyPart);
                 Die();
             }
             else

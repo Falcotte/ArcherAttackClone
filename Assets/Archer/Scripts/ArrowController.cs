@@ -61,7 +61,7 @@ namespace ArcherAttack.Archer
 
             if(other.TryGetComponent(out RagdollComponent ragdollComponent))
             {
-                ragdollComponent.Ragdoll.Enemy.HealthController.TakeDamage();
+                ragdollComponent.Ragdoll.Enemy.HealthController.TakeDamage(ragdollComponent.BodyPart);
 
                 transform.SetParent(ragdollComponent.transform);
                 OnArrowHit?.Invoke();
