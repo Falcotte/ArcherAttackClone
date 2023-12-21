@@ -1,3 +1,4 @@
+using ArcherAttack.Enemy;
 using ArcherAttack.Waypoints;
 using UnityEngine;
 using UnityEngine.AI;
@@ -54,6 +55,11 @@ namespace ArcherAttack.Archer
         public void ReachWaypoint()
         {
             _previousWaypointIndex = _currentWaypointIndex;
+
+            if(_currentWaypointIndex < _finalWaypointIndex)
+            {
+                transform.LookAt(EnemyManager.Instance.GetEnemy(_currentWaypointIndex - 1).transform);
+            }
         }
     }
 }

@@ -179,5 +179,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 7970516896675158297}
-  _moveSpeed: 15
-  _maxAllowedFlightTimeWithoutCollision: 1.5
+  _moveSpeed: 20
+  _maxAllowedFlightTimeWithoutCollision: 2
