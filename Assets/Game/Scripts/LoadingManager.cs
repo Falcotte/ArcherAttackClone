@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using ArcherAttack.Game.Data;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static Cinemachine.DocumentationSortingAttribute;
@@ -49,14 +50,18 @@ namespace ArcherAttack.Game
 
         private void LoadLevel(int levelIndex)
         {
-            SceneManager.LoadScene(_levelManager.Levels[levelIndex], LoadSceneMode.Additive);
-            _currentLoadedLevel = _levelManager.Levels[levelIndex];
+            int levelToLoadIndex = levelIndex % _levelManager.Levels.Count;
+
+            SceneManager.LoadScene(_levelManager.Levels[levelToLoadIndex], LoadSceneMode.Additive);
+            _currentLoadedLevel = _levelManager.Levels[levelToLoadIndex];
         }
 
         public void LoadNextLevel()
         {
             SceneManager.UnloadSceneAsync(_currentLoadedLevel);
-            LoadLevel(1);
+
+            DataManager.PlayerData.Level++;
+            LoadLevel(DataManager.PlayerData.Level);
         }
 
         public void ReloadLevel()

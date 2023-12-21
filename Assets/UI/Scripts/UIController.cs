@@ -213,14 +213,20 @@ namespace ArcherAttack.UI
         {
             _continueButton.enabled = false;
 
+            LoadingManager.Instance.LoadNextLevel();
+
             HideWinUI();
+            ShowGameplayUI();
         }
 
         public void Retry()
         {
             _retryButton.enabled = false;
 
+            LoadingManager.Instance.ReloadLevel();
+
             HideLoseUI();
+            ShowGameplayUI();
         }
     }
 }
