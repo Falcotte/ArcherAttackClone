@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 namespace ArcherAttack.Enemy
 {
@@ -9,6 +10,8 @@ namespace ArcherAttack.Enemy
 
         [SerializeField] private int _maxHealth;
         private int _currentHealth;
+
+        [SerializeField] private Outline _outline;
 
         public static UnityAction OnEnemyDamaged;
         public static UnityAction OnEnemyDeath;
@@ -35,6 +38,7 @@ namespace ArcherAttack.Enemy
         private void Die()
         {
             _enemy.StateMachine.ChangeState(_enemy.StateMachine.DeathState);
+            _outline.enabled = false;
 
             OnEnemyDeath?.Invoke();
         }
