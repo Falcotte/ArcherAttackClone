@@ -10,12 +10,14 @@ namespace ArcherAttack.Archer
         public override void EnterState(ArcherStateMachine stateMachine)
         {
             InputController.OnTouchDown += TriggerAction;
+            GameManager.OnGameStart += TriggerAction;
 
             stateMachine.Archer.AnimationController.SetMovement(false);
         }
 
         public override void ExitState(ArcherStateMachine stateMachine)
         {
+            GameManager.OnGameStart -= TriggerAction;
             InputController.OnTouchDown -= TriggerAction;
         }
 

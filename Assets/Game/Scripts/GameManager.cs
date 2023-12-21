@@ -55,6 +55,9 @@ namespace ArcherAttack.Game
 
         public void StartGame()
         {
+            if(CurrentState == GameState.Gameplay)
+                return;
+
             ChangeState(GameState.Gameplay);
             OnGameStart?.Invoke();
         }
