@@ -130,7 +130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemy: {fileID: 9069009559367571088}
   _target: {fileID: 0}
-  _secondsToKillPlayer: 10
+  _secondsToKillPlayer: 5
 --- !u!114 &2490747031104104110
 MonoBehaviour:
   m_ObjectHideFlags: 0
