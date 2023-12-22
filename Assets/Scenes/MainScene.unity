@@ -309,6 +309,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levels:
   - Level0
+  - Level1
+  - Level2
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

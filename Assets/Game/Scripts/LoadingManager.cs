@@ -21,7 +21,7 @@ namespace ArcherAttack.Game
             Application.targetFrameRate = 60;
 
             LoadPermanentScenes();
-            LoadLevel(0);
+            LoadLevel(DataManager.PlayerData.Level);
         }
 
         private void OnEnable()
