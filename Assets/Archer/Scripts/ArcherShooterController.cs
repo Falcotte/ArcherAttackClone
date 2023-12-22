@@ -27,6 +27,8 @@ namespace ArcherAttack.Archer
 
         [SerializeField] private int _arrowCount;
 
+        [SerializeField] private LayerMask _shootableLayer;
+
         private Quaternion _spineBoneInitialRotation;
 
         private ArrowController _arrow;
@@ -35,7 +37,6 @@ namespace ArcherAttack.Archer
         private Vector2 _currentInputVector;
 
         private Camera _mainCamera;
-        private int _enemyLayer;
 
         public static UnityAction<bool> OnHitDetected;
 
@@ -46,7 +47,6 @@ namespace ArcherAttack.Archer
         private void Awake()
         {
             _mainCamera = Camera.main;
-            _enemyLayer = 1 << LayerMask.NameToLayer("EnemyRagdoll");
 
             _spineBoneInitialRotation = _spineBone.localRotation;
 
@@ -120,7 +120,7 @@ namespace ArcherAttack.Archer
         {
             Ray ray = _mainCamera.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f));
 
-            if(Physics.Raycast(ray, Mathf.Infinity, _enemyLayer))
+            if(Physics.Raycast(ray, Mathf.Infinity, _shootableLayer))
             {
                 OnHitDetected?.Invoke(true);
             }

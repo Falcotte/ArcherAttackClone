@@ -17,6 +17,7 @@ namespace ArcherAttack.Enemy
         public static UnityAction OnEnemyDeath;
 
         public static UnityAction<BodyParts> OnEnemyKilledByArrow;
+        public static UnityAction OnEnemyKilledByExplosion;
 
         private void Start()
         {
@@ -50,6 +51,13 @@ namespace ArcherAttack.Enemy
                 _enemy.StateMachine.ChangeState(_enemy.StateMachine.AttackState);
                 OnEnemyDamaged?.Invoke();
             }
+        }
+
+        public void Explode()
+        {
+            Die();
+
+            OnEnemyKilledByExplosion?.Invoke();
         }
 
         private void Die()

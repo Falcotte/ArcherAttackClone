@@ -2400,6 +2400,7 @@ MonoBehaviour:
   _killTypeBody: {fileID: 21300000, guid: d8f528c14a9acde419ec109ec361f858, type: 3}
   _killTypeArms: {fileID: 21300000, guid: 000bef00c0742c24cb1bfd9dbb1e783c, type: 3}
   _killTypeLegs: {fileID: 21300000, guid: 027a7fa5c547a294391ca6754c2bb57b, type: 3}
+  _killTypeExplosion: {fileID: 21300000, guid: 6699dc8dfee148c4197184a86f85f8b1, type: 3}
   _defeatMessage: {fileID: 471263379}
   _currencyText: {fileID: 1504423196}
   _currencyRewardText: {fileID: 2105263198}

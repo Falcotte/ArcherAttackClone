@@ -3561,6 +3561,9 @@ MonoBehaviour:
   _inputHorizontalBound: 20
   _inputVerticalBound: 20
   _arrowCount: 3
+  _shootableLayer:
+    serializedVersion: 2
+    m_Bits: 192
 --- !u!1 &8718114668488397808
 GameObject:
   m_ObjectHideFlags: 0

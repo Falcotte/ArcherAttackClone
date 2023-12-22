@@ -38,6 +38,7 @@ namespace ArcherAttack.UI
         [SerializeField] private Sprite _killTypeBody;
         [SerializeField] private Sprite _killTypeArms;
         [SerializeField] private Sprite _killTypeLegs;
+        [SerializeField] private Sprite _killTypeExplosion;
 
         [SerializeField] private TextMeshProUGUI _defeatMessage;
 
@@ -65,6 +66,7 @@ namespace ArcherAttack.UI
 
             ArcherShooterController.OnArrowCountUpdated += UpdateArrowCount;
             EnemyHealthController.OnEnemyKilledByArrow += ShowKillType;
+            EnemyHealthController.OnEnemyKilledByExplosion += ShowKillType;
 
             ArcherController.OnAimed += ShowCrosshair;
             ArcherShooterController.OnShoot += HideCrosshair;
@@ -85,6 +87,7 @@ namespace ArcherAttack.UI
 
             ArcherShooterController.OnArrowCountUpdated -= UpdateArrowCount;
             EnemyHealthController.OnEnemyKilledByArrow -= ShowKillType;
+            EnemyHealthController.OnEnemyKilledByExplosion -= ShowKillType;
 
             ArcherController.OnAimed -= ShowCrosshair;
             ArcherShooterController.OnShoot -= HideCrosshair;
@@ -192,6 +195,22 @@ namespace ArcherAttack.UI
             _gameplayUI.DOFade(0f, .25f).OnComplete(() =>
             {
                 _gameplayUI.gameObject.SetActive(false);
+            });
+        }
+
+        private void ShowKillType()
+        {
+            _killTypeImageBackground.gameObject.SetActive(true);
+
+            _killTypeText.text = "Explosion";
+            _killTypeImage.sprite = _killTypeExplosion;
+
+            Sequence showKillTypeSequence = DOTween.Sequence();
+            showKillTypeSequence.Append(_killTypeImageBackground.transform.DOScale(1f, .25f).SetEase(Ease.OutBack));
+            showKillTypeSequence.AppendInterval(1f);
+            showKillTypeSequence.Append(_killTypeImageBackground.transform.DOScale(0f, .25f)).OnComplete(() =>
+            {
+                _killTypeImageBackground.gameObject.SetActive(false);
             });
         }
 

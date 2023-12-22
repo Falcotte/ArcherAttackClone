@@ -1,4 +1,5 @@
 using AngryKoala.Ragdoll;
+using ArcherAttack.Environment;
 using ArcherAttack.Game;
 using UnityEngine;
 using UnityEngine.Events;
@@ -64,6 +65,13 @@ namespace ArcherAttack.Archer
                 ragdollComponent.Ragdoll.Enemy.HealthController.TakeDamage(ragdollComponent.BodyPart);
 
                 transform.SetParent(ragdollComponent.transform);
+                OnArrowHit?.Invoke();
+            }
+            else if(other.TryGetComponent(out Explosive explosive))
+            {
+                explosive.Explode();
+
+                transform.SetParent(explosive.transform);
                 OnArrowHit?.Invoke();
             }
             else
