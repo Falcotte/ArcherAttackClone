@@ -44,6 +44,8 @@ namespace ArcherAttack.UI
         [SerializeField] private TextMeshProUGUI _currencyText;
         [SerializeField] private TextMeshProUGUI _currencyRewardText;
 
+        [SerializeField] private TextMeshProUGUI _levelText;
+
         [SerializeField] private Button _startGameButton;
         [SerializeField] private Button _continueButton;
         [SerializeField] private Button _retryButton;
@@ -95,6 +97,7 @@ namespace ArcherAttack.UI
         {
             _arrowCountUI.transform.localScale = Vector3.zero;
 
+            _levelText.text = $"LEVEL {DataManager.PlayerData.Level}";
             _currencyText.text = $"${DataManager.PlayerData.Currency}";
 
             _killTypeImageBackground.gameObject.SetActive(false);
@@ -267,6 +270,7 @@ namespace ArcherAttack.UI
             _winUI.DOFade(0f, .25f).OnComplete(() =>
             {
                 _winUI.gameObject.SetActive(false);
+                _levelText.text = $"LEVEL {DataManager.PlayerData.Level}";
             });
         }
 
